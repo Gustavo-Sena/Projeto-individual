@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div class="logo"></div>
+        <div class=nav_nar>
+            <a href="#">HISTORICO</a>
+            <a href="./Votação/votacao.html">VOTAÇÃO</a>
+        </div>
+    </header>
+
+    <div class="pai">
+        <div class="artistas">
+            <h1>ARTISTAS FAVORITOS</h1>
+            <button id="open-modal" class="btn">ADICIONAR ARTISTA</button>
+            <div id="fade" class="hide"></div>
+            <div id="modal" class="hide">
+                <div class="modal-header">
+                    <h2>ADICONE UM ARTISTA</h2>
+                    <button id="close-modal" class="btn">FECHAR</button>
+                </div>
+                <div class="modal-body">
+                    <form class="form">
+                        <label class="label-input">
+                            <input type="text" placeholder="Nome">
+                        </label>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="shows_part">
+            <h1>SHOWS QUE VOCÊ PARTICIPOU</h1>
+            <div id="div_exibir">
+
+            </div>
+            <button id="open-modal2" class="btn">ADICIONAR UM SHOW</button>
+            <div id="fade2" class="hide"></div>
+            <div id="modal2" class="hide">
+                <div class="modal-header">
+                    <h2>ADICONE UM SHOW</h2>
+                    <button id="close-modal2" class="btn">FECHAR</button>
+                </div>
+                <div class="modal-body">
+                    <form class="form">
+                        <label class="label-input">
+                            <input type="text" id="nome_artista" placeholder="Nome do artista">
+                        </label>
+                        <label class="label-input">
+                            <input type="text" id="data_show" placeholder="Dia do show">
+                        </label>
+                        <button type="button" class="btn" onclick="listar()">ADICIONAR</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="child">
+        <div class="tempo">
+            <h1>TEMPO EM SHOWS</h1>
+            <h2>300+</h2>
+        </div>
+    </div>
+
+    <div class="show_grafico">
+        <h1>SHOWS MAIS VISTOS</h1>
+    </div>
+    <div class="artista_grafico">
+        <h1>ARTISTAS MAIS CURTIDOS</h1>
+    </div>
+    <div class="tempo_grafico">
+        <h1>TEMPO MÉDIO DOS USUÁRIOS</h1>
+    </div>
+
+    <div id="div_nome">
+
+    </div>
+
+</body>
+
+</html>
+<script>
+    const openModalButton = document.querySelector("#open-modal");
+    const closeModalButton = document.querySelector("#close-modal");
+    const modal = document.querySelector("#modal");
+    const fade = document.querySelector("#fade");
+
+    const toggleModal = () => {
+        [modal, fade].forEach((el) => el.classList.toggle("hide"))
+    }
+
+    [openModalButton, closeModalButton, fade].forEach((el) => {
+        el.addEventListener("click", (toggleModal))
+    })
+
+    const openModalButton2 = document.querySelector("#open-modal2");
+    const closeModalButton2 = document.querySelector("#close-modal2");
+    const modal2 = document.querySelector("#modal2");
+    const fade2 = document.querySelector("#fade2");
+
+    const toggleModal2 = () => {
+        [modal2, fade2].forEach((el) => el.classList.toggle("hide"))
+    }
+
+    [openModalButton2, closeModalButton2, fade2].forEach((el) => {
+        el.addEventListener("click", (toggleModal2))
+    })
+
+    div_nome.innerHTML = sessionStorage.NOME_USUARIO;
+
+    onload = function trazer_historico(){
+        console.log("teste")
+        var idUser = sessionStorage.ID_USUARIO
+
+        console.log("teste")
+
+        fetch(`/shows/trazer_historico/${idUser}`)
+            .then(resposta2 => {
+
+                if (resposta2.ok) {
+                    resposta2.json().then(resposta2 => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta2)}`);
+                        for(var i = 0; i < resposta2.length; i++) 
+                        div_exibir.innerHTML += `${resposta2[i].nome}<br>`
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+
+    }
+    
+    function listar() {
+        console.log("teste")
+        var nome_artistaVar = nome_artista.value;
+        var data_showVar = data_show.value;
+        var idUser = sessionStorage.ID_USUARIO
+
+
+        if (nome_artistaVar == "" || data_showVar == "") {
+            console.log("DEU RUIM (CAMPOS EM BRANCO)")
+        }
+
+        console.log("teste")
+
+        fetch(`/shows/listar/${nome_artistaVar}/${idUser}`)
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        div_exibir.innerHTML += `${resposta[0].nome}<br>`
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+        // return false;
+
+
+</script>
