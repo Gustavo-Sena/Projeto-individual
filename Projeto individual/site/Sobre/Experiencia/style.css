@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans:wght@400;700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.center {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1100;
+    margin: 0 auto;
+    padding: 0 2%;
+}
+
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'PT Sans', sans-serif;
+    background-color: #1c1726;
+    color: white;
+}
+
+.header {
+    height: 200px;
+    padding: 100px;
+    background-color: var(--color-neutral-10);
+}
+
+.logo {
+    cursor: pointer;
+    width: 30%;
+}
+
+.menu {
+    padding-top: 30px;
+    width: 70%;
+    height: 10%;
+    text-align: center;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 50px;
+}
+
+.ENTRAR {
+    border: 0;
+    background-color: rgb(235, 63, 94);
+    width: 100px;
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    font-size: 60px;
+    justify-content: center;
+    display: flex;
+    letter-spacing: 10px;
+    margin-top: 5%;
+}
+
+.span_dias h1{
+    display: flex;
+    margin-top: 5%;
+    justify-content: center;
+    letter-spacing: 10px;
+}
+
+.span_local_grande {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    letter-spacing: 20px;
+}
+
+.span_local_pequeno{
+    display: flex;
+    margin-top: 2%;
+    justify-content: center;
+    letter-spacing: 10px;
+}
+
+.acessibilidade h1{
+    letter-spacing: 5px;
+    font-size: 40px ;
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+.texto_ace{
+    letter-spacing: 2px;
+    font-size: 20px;
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+}
+
+.div_pai{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.LINE_UP h1{
+    font-size: 80px;
+    letter-spacing: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 7%;
+}
+
+.div_btn {
+    display: flex;
+    justify-content: space-around;
+    width: auto;
+    margin: auto;
+    height: 15vh;
+    align-items: center;
+}
+
+.btn{
+    border: none;
+    background-color: rgb(235, 63, 94);
+    color: white;
+    width: 20%;
+    height: 60%;
+    font-size: 20px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: white;
+    color: rgb(235, 63, 94);
+    transition: 0.5s;
+}
+
+
+.todos_dias{
+    margin-top: 5%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.palco_midnight{
+    display: none;
+}
+
+.palco_starlight{
+    display: none;
+}
+
+.palco_young_blood{
+    display: none;
+}
+

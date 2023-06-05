@@ -59,6 +59,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .ENTRAR a {
@@ -77,6 +78,7 @@ section.sobre {
 }
 
 .texto_quem_somos {
+    letter-spacing: 2px;
     color: white;
     top: 0;
     margin-left: 63%;
@@ -90,6 +92,7 @@ section.sobre {
 }
 
 .texto_onde {
+    letter-spacing: 2px;
     color: white;
     top: 0;
     margin-left: 10%;
