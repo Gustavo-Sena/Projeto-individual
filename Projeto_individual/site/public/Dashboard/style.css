@@ -26,6 +26,11 @@ body{
     width: 40%;
     border-radius: 20px;
     margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .artistas h1{
@@ -33,9 +38,6 @@ body{
     justify-content: center;
 }
 
-.artistas .btn{
-    margin-left: 25%;
-}
 
 .shows_part{
     background-color: #171717 ;

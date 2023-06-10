@@ -21,7 +21,7 @@
 
     <div class="pai">
         <div class="artistas">
-            <h1>ARTISTAS FAVORITOS</h1>
+            <h1>ARTISTAS <br>FAVORITOS</h1>
             <div id="div_exibir2">
 
             </div>
@@ -74,6 +74,10 @@
         <div class="tempo">
             <h1>TEMPO EM SHOWS</h1>
             <h2>300+</h2>
+            <div id="div_exibir3">
+
+            </div>
+            <button type="button" class="btn" onclick="gerar_tempo()">ADICIONAR</button>
         </div>
     </div>
 
@@ -127,7 +131,12 @@
     /*=================================== ADICIONAR SHOW ========================================== */
 
 
-    onload = function trazer_historico() {
+    window.onload = function () {
+        trazer_historico();
+        trazer_artistas();
+    }
+
+    function trazer_historico() {
         console.log("teste")
         var idUser = sessionStorage.ID_USUARIO
 
@@ -154,7 +163,6 @@
 
     }
 
-    onload.trazer_historico()
     function procurarShow() {
         console.log("teste")
         var nome_artistaVar = nome_artista.value;
@@ -239,11 +247,11 @@
         return false;
     }
 
-        // return false;
+    // return false;
 
     /*=================================== ADICIONAR ARTISTA ========================================== */
 
-    onload = function trazer_artistas() {
+    function trazer_artistas() {
         console.log("teste")
         var idUser = sessionStorage.ID_USUARIO
 
@@ -270,7 +278,8 @@
 
     }
 
-    onload.trazer_artistas()
+
+
     function procurarArtistas() {
         console.log("teste")
         var nome_artistaVar = nome_artista2.value;
@@ -354,4 +363,33 @@
         return false;
     }
 
+
+ /*=================================== GERAR O TEMPO ========================================== */
+
+    function gerar_tempo() {
+        console.log("teste")
+        var idUser = sessionStorage.ID_USUARIO
+
+        console.log("teste")
+
+        fetch(`/tempo/gerar_tempo/${idUser}`)
+            .then(resposta2 => {
+
+                if (resposta2.ok) {
+                    resposta2.json().then(resposta2 => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta2)}`);
+                        for (var i = 0; i < resposta2.length; i++)
+                            div_exibir3.innerHTML = `${resposta2[i].somaTempoMedio}<br>`
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+
+    }
 </script>

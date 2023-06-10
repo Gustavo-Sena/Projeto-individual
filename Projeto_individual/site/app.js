@@ -14,6 +14,7 @@ var avisosRouter = require("./src/routes/avisos");
 var medidasRouter = require("./src/routes/medidas");
 var showsRouter = require("./src/routes/shows");
 var artistasRouter = require("./src/routes/artistas");
+var tempoRouter = require("./src/routes/tempo")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -26,7 +27,8 @@ app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
 app.use("/medidas", medidasRouter);
 app.use("/shows", showsRouter);
-app.use("/artiistas", artistasRouter);
+app.use("/artistas", artistasRouter);
+app.use("/tempo", tempoRouter)
 
 
 app.listen(PORTA, function () {
