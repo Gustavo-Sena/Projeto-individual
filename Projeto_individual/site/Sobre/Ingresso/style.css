@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans:wght@400;700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.center {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1100;
+    margin: 0 auto;
+    padding: 0 2%;
+}
+
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'PT Sans', sans-serif;
+    background-color: #1c1726;
+}
+
+.header {
+    height: 200px;
+    padding: 100px;
+    background-color: var(--color-neutral-10);
+}
+
+.logo {
+    cursor: pointer;
+    width: 30%;
+}
+
+.menu {
+    padding-top: 30px;
+    width: 70%;
+    height: 10%;
+    text-align: center;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 50px;
+}
+
+.ENTRAR {
+    border: 0;
+    background-color: rgb(235, 63, 94);
+    width: 100px;
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}   
+
+.ENTRAR a {
+    margin: 0;
+}
+
+
+.mensagem {
+    width: 100%;
+    text-align: center;
+}

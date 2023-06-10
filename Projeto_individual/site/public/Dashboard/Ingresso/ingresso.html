@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="cars">Escolha o dia:</label>
+    <select id="dia">
+        <optgroup label="Esolha o dia">
+            <option value="volvo">Dia 9</option>
+            <option value="saab">Dia 10</option>
+            <option value="mercedes">Dia 11</option>
+            <option value="audi">Dia 12</option>
+            <option value="audi">Dia 13</option>
+        </optgroup>
+    </select> <br>
+        
+        <button onclick="gerarQRCode()">COMPRAR</button>
+        <img id="QRCodeImage">
+</body>
+</html>
+<script>
+    function gerarQRCode(){
+        var inputUsuario = document.querySelector('select').value;
+        var GoogleChartAPI = 'https://chart.googleapis.com/chart?cht=qr&chs=500x500&chld=H&chl=';
+        var conteudoQRCode = GoogleChartAPI + '54967851894';
+        document.querySelector('#QRCodeImage').src = conteudoQRCode;
+    }
+</script>
