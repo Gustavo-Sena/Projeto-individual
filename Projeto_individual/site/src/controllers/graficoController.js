@@ -1,14 +1,14 @@
-var medidaModel = require("../models/medidaModel");
+var graficoModel = require("../models/graficoModel");
 
 function buscarUltimasMedidas(req, res) {
 
-    const limite_linhas = 7;
+    const limite_linhas = 7
 
-    var idAquario = req.params.idAquario;
+    var idShow = req.params.idShow;
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    medidaModel.buscarUltimasMedidas(idAquario, limite_linhas).then(function (resultado) {
+    graficoModel.buscarUltimasMedidas(idShow, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -21,14 +21,15 @@ function buscarUltimasMedidas(req, res) {
     });
 }
 
+function buscarUltimasMedidas2(req, res) {
 
-function buscarMedidasEmTempoReal(req, res) {
+    const limite_linhas = 7
 
-    var idAquario = req.params.idAquario;
+    var idArtista = req.params.idArtista;
 
-    console.log(`Recuperando medidas em tempo real`);
+    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    medidaModel.buscarMedidasEmTempoReal(idAquario).then(function (resultado) {
+    graficoModel.buscarUltimasMedidas2(idArtista, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -40,9 +41,9 @@ function buscarMedidasEmTempoReal(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
+
 
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
-
+    buscarUltimasMedidas2
 }
