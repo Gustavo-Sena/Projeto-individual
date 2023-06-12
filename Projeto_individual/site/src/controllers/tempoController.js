@@ -12,7 +12,18 @@ function gerar_tempo(req, res) {
     })
 }
 
+function gerar_media(req, res) {
+
+    tempoModel.gerar_media().then(function(resultado){
+        // precisamos informar que o resultado voltará para o front-end como uma resposta json
+        res.status(200).json(resultado);
+    }).catch(function(erro){
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
 
 module.exports = {
-    gerar_tempo
+    gerar_tempo,
+    gerar_media
 }
