@@ -1,54 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Document</title> <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
-        <div class=nav_nar>
-            <div class="logo"></div>
-            <a href="../dashboard.html">HISTORICO</a>
+        <div class="logo">
+            <img src="../../Sobre/imagens/logo_atomica.png" style="width: 10vw;" alt="">
+        </div>
+        <div class="nav_bar">
+            <a href="../../Sobre/sobre.html">SOBRE</a>
+            <a href="../../Sobre/Experiencia/experiencia.html">EXPERIÊNCIA</a>
+            <a href="../Ingresso/ingresso.html">INGRESSO</a>
             <a href="#">VOTAÇÃO</a>
+            <div class="div_nome" id="div_nome">BEM VINDO(A) </div>
         </div>
     </header>
 
-    <div class="firt-content">
-        <div class="title">
-            <h1>VOTE NOS PRÓXIMOS ARTISTAS</h1>
-        </div>
-        <div class="votacao_artistas">
-            <div class="opcao1">
-                <h1>BLACK PINK</h1>
-                <div class="img">
-                    <img src="https://i.scdn.co/image/ab6761610000e5ebc9690bc711d04b3d4fd4b87c" alt="">
-                </div>
-                <button>VOTAR</button>
-            </div>
-            <div class="opcao2">
-                <h1>MONTIONLESS IN WHITE</h1>
-                <div class="img">
-                    <img src="https://i.scdn.co/image/ab6761610000e5eb58f2b24b02877506d74b612b" alt="">
-                </div>
-                <button>VOTAR</button>
-            </div>
-            <div class="opcao3">
-                <h1>BRING ME THE HORIZON</h1>
-                <div class="img">
-                    <img src="https://i.scdn.co/image/ab67616100005174ad65800f55f7a8d7d917624b" alt="">
-                </div>
-                <button>VOTAR</button>
-            </div>
-        </div>
+    <br> <br> <br> <br>
+    <div class="escolher_artista">
+        <select class="escolher_artista" id="escolher_artista">
+            <optgroup label="Esolha o artista">
+                <option value="Bullet For My Valentine">Bullet For My Valentine</option>
+                <option value="Motionless In White">Motionless In White</option>
+                <option value="Bring Me The Horizon">Bring Me The Horizon</option>
+            </optgroup>
+        </select> 
     </div>
 
-    <div class="second-content">
-        <div class="grafico_votacao">
-
-        </div>
-    </div>
-
+    <button onclick="votar()">VOTAR</button>
 </body>
+
 </html>
+<script>
+
+    function votar() {
+
+        var escolhaUsuario = document.querySelector('select').value;
+
+        var idUser = sessionStorage.ID_USUARIO;
+
+        if (escolhaUsuario == "") {
+            return false;
+        }
+
+        fetch("/votacao/votar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                escolhaUsuarioServer: escolhaUsuario,
+                idUserServer: idUser
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    // sessionStorage.EMAIL_USUARIO = json.email;
+                    // sessionStorage.NOME_USUARIO = json.nome;
+                    // sessionStorage.ID_USUARIO = json.idUsuario;
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+</script>

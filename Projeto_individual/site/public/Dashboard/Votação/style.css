@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans:wght@400;700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'PT Sans', sans-serif; 
+    background-color: #1c1726;
+    color: white;
+}
+
+.nav_bar{
+    justify-content: space-evenly;
+    display: flex;
+    margin-top: -6%;
+    margin-left: 40%;
+}
+
+.div_nome{
+    font-weight: bold;
+    color: rgb(235, 63, 94);
+}
+
+.nav_bar a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
