@@ -1,32 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ingresso</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <label for="cars">Escolha o dia:</label>
-    <select id="dia">
-        <optgroup label="Esolha o dia">
-            <option value="volvo">Dia 9</option>
-            <option value="saab">Dia 10</option>
-            <option value="mercedes">Dia 11</option>
-            <option value="audi">Dia 12</option>
-            <option value="audi">Dia 13</option>
-        </optgroup>
-    </select> <br>
+    <header>
+        <div class="logo">
+            <img src="../../Sobre/imagens/logo_atomica.png" style="width: 10vw;" alt="">
+        </div>
+        <div class="nav_bar">
+            <a href="../../Sobre/sobre.html">SOBRE</a>
+            <a href="../../Sobre/Experiencia/experiencia.html">EXPERIÊNCIA</a>
+            <a href="#">INGRESSO</a>
+            <a href="../Votação/votacao.html">VOTAÇÃO</a>
+            <div class="div_nome" id="div_nome">BEM VINDO(A) </div>
+        </div>
+    </header>
+    <br><br><br>
+
+    <div class="pai">
+        <h1>SELECIONE O DIA</h1><br
+        <div class="dias">
+            <select id="dia">
+                <optgroup label="Esolha o dia">
+                    <option value="dia2">Dia 2</option>
+                    <option value="dia3">Dia 3</option>
+                    <option value="dia7">Dia 7</option>
+                    <option value="dia8">Dia 8</option>
+                    <option value="dia9">Dia 9</option>
+                </optgroup>
+            </select> <br>
+        </div>
         
-        <button onclick="gerarQRCode()">COMPRAR</button>
-        <img id="QRCodeImage">
+        <div class="saldo">
+            <H1>COLOQUE O SEU SALDO</H1><br>
+            <input type="number" id="ipt_saldo">
+        </div> <br>
+
+        <div class="meia">
+            <h1>SELECIONE SE O INGRESSO <br> É MEIA OU NORMAL</h1><br> 
+            <input type="checkbox" id="meia" value="meia">Meia<br>
+            <input type="checkbox" id="normal" value="normal">Normal<br> 
+        </div>
+        
+        <div class="saldo_atual" id="div_saldo_atual">
+
+        </div>
+        <button class="btn" onclick="cadastrarIngresso()">COMPRAR</button>
+    </div>
+    <div class="child">
+        <div class="img_qr">
+            <br> <br> 
+            <img id="QRCodeImage">
+        </div>
+    </div>
+    
+    
 </body>
+
 </html>
 <script>
-    function gerarQRCode(){
-        var inputUsuario = document.querySelector('select').value;
-        var GoogleChartAPI = 'https://chart.googleapis.com/chart?cht=qr&chs=500x500&chld=H&chl=';
-        var conteudoQRCode = GoogleChartAPI + '54967851894';
-        document.querySelector('#QRCodeImage').src = conteudoQRCode;
+
+    div_nome.innerHTML += sessionStorage.NOME_USUARIO;
+
+    function cadastrarIngresso() {
+        var saldo = Number(ipt_saldo.value)
+        var saldo_atual = saldo
+        var meia = document.getElementById("meia").checked;
+        var normal = document.getElementById("normal").checked;
+
+        console.log("Opção 1 selecionada: " + meia);
+        console.log("Opção 2 selecionada: " + normal);
+
+        if (normal == true && saldo_atual >= 800 || meia == true && saldo_atual >= 400) {
+            if (meia == true) {
+                saldo_atual = saldo_atual - 400
+                div_saldo_atual.innerHTML = `<h1>O seu saldo atual é de R$${saldo_atual}<h1>`
+            }
+            else {
+                saldo_atual = saldo_atual - 800
+                div_saldo_atual.innerHTML = `<h1>O seu saldo atual é de R${saldo_atual}<h1>`
+            }
+
+            alert("QR CODE GERADO COM SUCESSO!")
+
+            var codigo = Math.random()
+            var inputUsuario = document.querySelector('select').value;
+            var GoogleChartAPI = 'https://chart.googleapis.com/chart?cht=qr&chs=500x500&chld=H&chl=';
+            var conteudoQRCode = GoogleChartAPI + inputUsuario + codigo;
+            document.querySelector('#QRCodeImage').src = conteudoQRCode;
+
+            console.log("Teste 1")
+
+            console.log("Teste 2")
+
+            var idUser = sessionStorage.ID_USUARIO;
+
+            if (codigo == "") {
+                return false;
+            }
+
+            fetch("/ingresso/cadastrarIngresso", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    codigoServer: codigo,
+                    idUserServer: idUser
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
+
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+
+                        // sessionStorage.EMAIL_USUARIO = json.email;
+                        // sessionStorage.NOME_USUARIO = json.nome;
+                        // sessionStorage.ID_USUARIO = json.idUsuario;
+
+                    });
+
+                } else {
+
+                    console.log("Houve um erro ao tentar realizar o login!");
+
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+
+            }).catch(function (erro) {
+                console.log(erro);
+            })
+
+            return false;
+
+        }
+        else {
+            alert("Saldo insuficiente!")
+        }
     }
 </script>

@@ -14,6 +14,7 @@ var showsRouter = require("./src/routes/shows");
 var artistasRouter = require("./src/routes/artistas");
 var tempoRouter = require("./src/routes/tempo");
 var graficoRouter = require("./src/routes/grafico");
+var ingressoRouter = require("./src/routes/ingresso");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -21,13 +22,13 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());
 
-app.use("/", indexRouter);
+app.use("/", indexRouter)
 app.use("/usuarios", usuarioRouter);
 app.use("/shows", showsRouter);
 app.use("/artistas", artistasRouter);
 app.use("/tempo", tempoRouter);
 app.use("/grafico", graficoRouter);
-
+app.use("/ingresso", ingressoRouter);
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA}/Sobre/sobre.html \n
