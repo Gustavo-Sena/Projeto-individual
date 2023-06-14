@@ -7,4 +7,8 @@ router.post("/votar", function (req, res) {
     votacaoController.votar(req, res);
 })
 
+router.get("/ultimas/:idShow", function (req, res) {
+    votacaoController.buscarUltimasMedidas(req, res);
+});
+
 module.exports = router;

@@ -16,6 +16,18 @@ function votar(escolhaUsuario, idUser) {
     return database.executar(instrucao);
 }
 
+function buscarUltimasMedidas(idShow) {
+
+    instrucaoSql = `
+    SELECT COUNT(fkArtista) AS nm_votos, nome FROM Votacao 
+	JOIN Artistas ON fkArtista = idArtista
+	GROUP BY fkArtista;`
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
-    votar
+    votar,
+    buscarUltimasMedidas
 }

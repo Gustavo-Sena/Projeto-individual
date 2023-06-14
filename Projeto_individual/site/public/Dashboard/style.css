@@ -265,3 +265,21 @@ input:focus {
 .show_grafico h3{
     text-align: center;
 }
+
+.imagens{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.imagens img{
+    border: solid rgb(235, 63, 94) 10px;
+    border-radius: 20px;
+}
+
+.imagens img:hover{
+    cursor: pointer;
+    transition: 0.5s;
+    border: solid rgb(235, 63, 94) 25px;
+    border-radius: 20px;
+}

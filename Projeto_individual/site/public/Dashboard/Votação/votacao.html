@@ -5,10 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title> <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
+     <!-- scripts do Chart.js - 2022-1 -->
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <header>
         <div class="logo">
             <img src="../../Sobre/imagens/logo_atomica.png" style="width: 10vw;" alt="">
@@ -30,14 +35,33 @@
                 <option value="Motionless In White">Motionless In White</option>
                 <option value="Bring Me The Horizon">Bring Me The Horizon</option>
             </optgroup>
-        </select> 
+        </select>
     </div>
 
     <button onclick="votar()">VOTAR</button>
+
+
+    <div class="show_grafico">
+        <br><br>
+        <h1>SHOWS MAIS VISTOS</h1>
+        <br>
+        <div id="graficos">
+            <div id="grafico1" class="display-block">
+                <div class="graph">
+                    <canvas width="500px" height="200px" id="myChartCanvas1"></canvas>
+                </div>
+            </div>
+        </div>
 </body>
 
 </html>
 <script>
+
+    div_nome.innerHTML += sessionStorage.NOME_USUARIO;
+
+    window.onload = function () {
+        obterDadosGrafico();
+    }
 
     function votar() {
 
@@ -89,4 +113,99 @@
 
         return false;
     }
+
+    var ls_nome_artista = []
+    var ls_quantidade_votos = []
+
+    function obterDadosGrafico(idShow) {
+
+        fetch(`/votacao/ultimas/${idShow}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGrafico(resposta, idShow);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
+
+    function plotarGrafico(resposta, idShow) {
+
+        console.log('iniciando plotagem do gráfico...');
+
+        // Criando estrutura para plotar gráfico - labels
+
+
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: ls_nome_artista,
+            datasets: [
+                {
+                    label: 'Quantidade de Vizualizações',
+                    width: '30px',
+                    height: '40px',
+                    data: ls_quantidade_votos,
+                    backgroundColor:
+                        ['rgb(235, 63, 94)'],
+                    tension: 0.1,
+
+                }]
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            ls_nome_artista.push(registro.nome);
+            ls_quantidade_votos.push(registro.nm_votos);
+        }
+
+
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'bar',
+            data: dados,
+            options: {
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#fff'
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: '#fff'
+                        }
+                    }
+                }
+            }
+        };
+
+        // Adicionando gráfico criado em div na tela
+        let myChart = new Chart(
+            document.getElementById(`myChartCanvas1`),
+            config
+        );
+
+        /* setTimeout(() => atualizarGrafico(idShow, dados, myChart), 2000); */
+    }
+
+
+
 </script>
