@@ -295,8 +295,19 @@ footer {
 }
 
 .footer-list .footer-link {
+    margin-left: 5px;
     color: var(--color-neutral-30);
     transition: all 0.4s;
+}
+
+.footer-list .footer-link:hover {
+    color: rgb(235, 63, 94);
+}
+
+.footer-list .footer-link {
+    color: var(--color-neutral-30);
+    transition: all 0.4s;
+    margin-left: 5px;
 }
 
 .footer-list .footer-link:hover {
@@ -344,6 +355,7 @@ footer {
 }
 
 #footer_copyright {
+    color: white;
     display: flex;
     justify-content: center;
     background-color: var(--color-neutral-0);

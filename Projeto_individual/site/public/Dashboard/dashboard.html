@@ -15,16 +15,24 @@
 
 <body>
     <header>
-        <div class="logo"></div>
-        <div class=nav_nar>
-            <a href="#">HISTORICO</a>
-            <a href="./Votação/votacao.html">VOTAÇÃO</a>
-        </div>
+            <div class="logo">
+                <img src="../Sobre/imagens/logo_atomica.png" style="width: 10vw;" alt="">
+            </div>
+            <div class="nav_bar">
+                <a href="../Sobre/sobre.html">SOBRE</a>
+                <a href="../Sobre/Experiencia/experiencia.html">EXPERIÊNCIA</a>
+                <a href="./Ingresso/ingresso.html">INGRESSO</a>
+                <a href="./Votação/votacao.html">VOTAÇÃO</a>
+                <div class="div_nome" id="div_nome">BEM VINDO(A) </div>        
+            </div>
     </header>
+    <br><br><br>
 
     <div class="pai">
         <div class="artistas">
-            <h1>ARTISTAS <br>FAVORITOS</h1>
+            <br>
+            <h1>ARTISTAS FAVORITOS</h1>
+            <br>
             <div class="div_exibir2" id="div_exibir2">
 
             </div>
@@ -47,7 +55,9 @@
         </div>
 
         <div class="shows_part">
-            <h1>SHOWS QUE VOCÊ PARTICIPOU</h1>
+            <br>
+            <h1>SHOWS PARTICIPADOS</h1>
+            <br>    
             <div class="div_exibir" id="div_exibir">
 
             </div>
@@ -73,29 +83,34 @@
             </div>
         </div>
     </div>
-
+    <br><br><br><br><br>
     <div class="child">
         <div class="tempo">
             <h1>TEMPO EM SHOWS</h1>
+            <br>
             <div id="div_exibir3">
-
+                
             </div>
         </div>
     </div>
 
+    <br><br><br>
     <div class="child">
         <div class="tempo">
             <h1>TEMPO MÉDIO DOS USUÁRIOS</h1>
+            <br>
             <div id="div_exibir4">
 
             </div>
         </div>
     </div>
+    <br><br><br>
 
 
     <div class="show_grafico">
         <br><br>
         <h1>SHOWS MAIS VISTOS</h1>
+        <br>
         <div id="graficos">
             <div id="grafico1" class="display-block">
                 <div class="graph">
@@ -103,8 +118,10 @@
                 </div>
             </div>
         </div>
+        <br><br><br><br><br>
         <div class="artista_grafico">
             <h1>ARTISTAS MAIS CURTIDOS</h1>
+            <br><br>
             <div id="graficos2">
                 <div id="grafico2" class="display-block">
                     <div class="graph">
@@ -114,10 +131,7 @@
             </div>
         </div>
 
-        <div id="div_nome">
-
-        </div>
-
+       
 </body>
 
 </html>
@@ -152,7 +166,7 @@
         el.addEventListener("click", (toggleModal2))
     })
 
-    div_nome.innerHTML = sessionStorage.NOME_USUARIO;
+    div_nome.innerHTML += sessionStorage.NOME_USUARIO;
 
 
     /*=================================== ADICIONAR SHOW ========================================== */
@@ -411,7 +425,7 @@
 
                         console.log(`Dados recebidos: ${JSON.stringify(resposta2)}`);
                         for (var i = 0; i < resposta2.length; i++)
-                            div_exibir3.innerHTML = `<h2>${resposta2[i].somaTempoMedio}+<h2>`
+                            div_exibir3.innerHTML = `<h2>${resposta2[i].somaTempoMedio}<h2>`
                     });
                 } else {
 
@@ -478,14 +492,12 @@
             labels: ls_nome_show,
             datasets: [
                 {
-                    label: 'quantidade_vizualiacoes',
+                    label: 'Quantidade de Vizualizações',
                     width: '30px',
                     height: '40px',
-                    data: ls_quantidade_visualizacoes,
+                    data: ls_quantidade_visualizacoes, 
                     backgroundColor:
-                        ['rgb(235, 63, 94)',
-                            'rgb(255, 255, 12)',
-                            'rgb(0, 255, 255)'],
+                        ['rgb(235, 63, 94)'],
                     tension: 0.1,
 
                 }]
@@ -508,6 +520,20 @@
         const config = {
             type: 'bar',
             data: dados,
+            options:{
+                scales:{
+                x: {
+                    ticks:{
+                        color:'#fff'
+                    }
+                },
+                y: {
+                    ticks:{
+                        color: '#fff'
+                    }
+                }
+            }
+            }
         };
 
         // Adicionando gráfico criado em div na tela
@@ -551,20 +577,18 @@
 
 
         // Criando estrutura para plotar gráfico - dados
+        Chart.defaults.font.size = 13;
         let dados = {
             labels: ls_nome_artista,
             datasets: [
                 {
-                    label: 'quantidade_curtidas',
+                    label: 'Quantidade de Curtidas',
                     width: '30px',
                     height: '40px',
                     data: ls_quantidade_curtidas,
                     backgroundColor:
-                        ['rgb(235, 63, 94)',
-                            'rgb(255, 255, 12)',
-                            'rgb(0, 255, 255)'],
+                        ['rgb(235, 63, 94)'],
                     tension: 0.1,
-
                 }]
         };
 
@@ -583,6 +607,20 @@
         const config = {
             type: 'bar',
             data: dados,
+            options:{
+                scales:{
+                x: {
+                    ticks:{
+                        color:'#fff'
+                    }
+                },
+                y: {
+                    ticks:{
+                        color: '#fff'
+                    }
+                }
+            }
+            }
         };
 
         // Adicionando gráfico criado em div na tela

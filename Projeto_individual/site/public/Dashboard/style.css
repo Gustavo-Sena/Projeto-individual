@@ -12,6 +12,24 @@ body{
     color: white;
 }
 
+.nav_bar{
+    justify-content: space-evenly;
+    display: flex;
+    margin-top: -6%;
+    margin-left: 40%;
+}
+
+.div_nome{
+    font-weight: bold;
+    color: rgb(235, 63, 94);
+}
+
+.nav_bar a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
 .pai{
     display: flex;
     justify-content: space-between;
@@ -22,7 +40,7 @@ body{
 
 .artistas{
     background-color: #171717 ;
-    height: 50%;
+    height: 400px;
     width: 40%;
     border-radius: 20px;
     margin-top: 5%;
@@ -48,11 +66,17 @@ body{
     justify-content: center;
 }
 
+.show_grafico h1{
+    font-size: 60px;
+    letter-spacing: 10px;
+}
+
 
 .shows_part{
     background-color: #171717 ;
     max-height: 30%;
     width: 40%;
+    height: 400px;
     border-radius: 20px;
     margin-top: 5%;
     text-align: center;

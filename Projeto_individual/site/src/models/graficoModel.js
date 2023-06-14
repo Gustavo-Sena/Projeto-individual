@@ -6,7 +6,8 @@ function buscarUltimasMedidas(idShow) {
     FROM HistoricoShow 
     JOIN Artistas a ON fkShowFav = a.idArtista
     GROUP BY a.nome
-    ORDER BY quantidade_visualizacoes DESC;`
+    ORDER BY quantidade_visualizacoes DESC
+    LIMIT 10;`
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -18,7 +19,8 @@ function buscarUltimasMedidas2(idArtista) {
     FROM HistoricoArtista 
     JOIN Artistas a ON fkArtistaFav = a.idArtista
     GROUP BY a.idArtista, a.nome
-    ORDER BY curtidas DESC;`     
+    ORDER BY curtidas DESC
+    LIMIT 10;`     
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
