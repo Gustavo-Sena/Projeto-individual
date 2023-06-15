@@ -74,9 +74,6 @@
                         <label class="label-input">
                             <input type="text" id="nome_artista" placeholder="Nome do artista">
                         </label>
-                        <label class="label-input">
-                            <input type="text" id="data_show" placeholder="Dia do show">
-                        </label>
                         <button type="button" class="btn"
                             onclick="procurarShow(), addShow(), gerar_tempo()">ADICIONAR</button>
                     </form>
@@ -264,11 +261,10 @@
 
     function procurarShow() {
         var nome_artistaVar = nome_artista.value;
-        var data_showVar = data_show.value;
         var idUser = sessionStorage.ID_USUARIO
 
 
-        if (nome_artistaVar == "" || data_showVar == "") {
+        if (nome_artistaVar == "") {
             console.log("DEU RUIM (CAMPOS EM BRANCO)")
         }
 
@@ -401,7 +397,6 @@
 
                     });
                 } else {
-
                     console.error('Nenhum dado encontrado ou erro na API');
                 }
             })
@@ -475,7 +470,7 @@
 
                         console.log(`Dados recebidos: ${JSON.stringify(resposta2)}`);
                         for (var i = 0; i < resposta2.length; i++)
-                            div_exibir3.innerHTML = `<h2>${resposta2[i].somaTempoMedio}<h2>`
+                            div_exibir3.innerHTML = `<h2>${resposta2[i].somaTempoMedio} Min<h2>`
                     });
                 } else {
 
@@ -695,7 +690,7 @@
 
                         console.log(`Dados recebidos: ${JSON.stringify(resposta2)}`);
                         for (var i = 0; i < resposta2.length; i++)
-                            div_exibir4.innerHTML = `<h2>${resposta2[i].mediaTempoMedio}<h2>`
+                            div_exibir4.innerHTML = `<h2>${resposta2[i].mediaTempoMedio} Min<h2>`
                     });
                 } else {
 
