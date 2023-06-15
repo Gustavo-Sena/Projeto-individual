@@ -29,3 +29,85 @@ body{
     text-decoration: none;
     font-weight: bold;
 }
+
+.artistas{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5% 18%;
+}
+
+.artistas h1{
+    font-size: 35px;
+    letter-spacing: 2px;
+}
+
+.artistas img{
+    border: solid rgb(235, 63, 94) 10px;
+    border-radius: 20px;
+}
+
+.artistas img:hover{
+    transition: 0.5s;
+    border: solid rgb(235, 63, 94) 25px;
+    border-radius: 20px;
+}
+
+.titulo h1{
+    text-align: center;
+    font-size: 60px;
+    letter-spacing: 10px;
+    margin-top: 5%;
+}
+
+.escolher_artista{
+    display: flex;
+    flex-direction: column  ;
+    align-items: center;
+    justify-content: center;
+}
+
+.escolher_artista input{
+    text-align: center;
+}
+
+.escolher_artista select{
+    font-size: 18px;
+    outline: none;
+    width: 30vh;
+    height: 5vh;
+    border-radius: 20px;
+    border: none;
+}
+
+.escolher_artista section text{
+    margin-top: 2vh;
+}
+
+.btn{
+    border-radius: 50px;
+    text-transform: uppercase;
+    color: white;
+    font-size: 10px;
+    padding: 25px 120px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 1rem;
+    background-color: rgb(235, 63, 94);
+    border: none;
+    font-size: 30px;
+    letter-spacing: 5px;
+}
+
+.btn:hover{
+    background-color: white;
+    color: rgb(235, 63, 94);
+    transition: 0.5s;
+}
+
+.show_grafico h1{
+    text-align: center;
+    font-size: 60px;
+    letter-spacing: 10px;
+}

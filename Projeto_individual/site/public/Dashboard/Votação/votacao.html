@@ -11,9 +11,9 @@
 
 <body>
 
-     <!-- scripts do Chart.js - 2022-1 -->
-     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+    <!-- scripts do Chart.js - 2022-1 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <header>
         <div class="logo">
             <img src="../../Sobre/imagens/logo_atomica.png" style="width: 10vw;" alt="">
@@ -23,27 +23,50 @@
             <a href="../../Sobre/Experiencia/experiencia.html">EXPERIÊNCIA</a>
             <a href="../Ingresso/ingresso.html">INGRESSO</a>
             <a href="#">VOTAÇÃO</a>
+            <a href="../dashboard.html">DASHBOARD</a>
             <div class="div_nome" id="div_nome">BEM VINDO(A) </div>
         </div>
     </header>
 
-    <br> <br> <br> <br>
-    <div class="escolher_artista">
-        <select class="escolher_artista" id="escolher_artista">
-            <optgroup label="Esolha o artista">
-                <option value="Bullet For My Valentine">Bullet For My Valentine</option>
-                <option value="Motionless In White">Motionless In White</option>
-                <option value="Bring Me The Horizon">Bring Me The Horizon</option>
-            </optgroup>
-        </select>
-    </div>
+        <div class="titulo">
+            <h1>VOTE NOS PRÓXIMOS ARTISTAS</h1>
+        </div>
+        <div class="artistas">
+            <div class="imgs_cima">
+                <br> <br><h1>Bullet For My Valentine</h1><br>
+                <img style="width: 400px; height: 400px; border-radius: 60px;"
+                    src="https://i.scdn.co/image/ab6761610000e5eb083627f7d306f40cd7ff8893" alt="">
+                <br><br><h1>Motionless In White</h1><br>
+                <img style="width: 400px; height: 400px; border-radius: 60px;"
+                    src="https://i.scdn.co/image/ab6761610000e5eb58f2b24b02877506d74b612b" alt="">
+            </div>
+            <br>
+            <div class="imgs_baixo">
+                <br><br><h1>Bring Me The Horizon</h1><br>
+                <img style="width: 400px; height: 400px; border-radius: 60px;"
+                    src="https://i.scdn.co/image/ab67616100005174ad65800f55f7a8d7d917624b" alt="">
+                <br><br><h1>Nelly Furtado</h1><br>
+                <img style="width: 400px; height: 400px; border-radius: 60px;" src="https://i.scdn.co/image/ab6761610000e5eb4cd5711d0422af7209cdf37a" alt="">
+            </div>
+        </div>
 
-    <button onclick="votar()">VOTAR</button>
+            <div class="escolher_artista">
+                <select class="escolher_artista" id="escolher_artista">
+                    <optgroup label="Esolha o artista">
+                        <option value="Bullet For My Valentine">Bullet For My Valentine</option>
+                        <option value="Motionless In White">Motionless In White</option>
+                        <option value="Bring Me The Horizon">Bring Me The Horizon</option>
+                        <option value="Nelly Furtado">Nelly Furtado</option>
+                    </optgroup>
+                </select><br>
+                <button class="btn" onclick="votar()">VOTAR</button>
+            </div>
+
 
 
     <div class="show_grafico">
         <br><br>
-        <h1>SHOWS MAIS VISTOS</h1>
+        <h1>RESULTADOS DA VOTAÇÃO</h1>
         <br>
         <div id="graficos">
             <div id="grafico1" class="display-block">
@@ -153,7 +176,7 @@
             labels: ls_nome_artista,
             datasets: [
                 {
-                    label: 'Quantidade de Vizualizações',
+                    label: 'QUANTIDADE DE VOTOS',
                     width: '30px',
                     height: '40px',
                     data: ls_quantidade_votos,
